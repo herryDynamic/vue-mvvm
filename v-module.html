@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>simulate-vue</title>
+	</head>
+	<style>
+		#app {
+        text-align: center;
+    }
+</style>
+	<body>
+		<div id="app">
+			<h2>{{title}}</h2>
+			<input v-model="value">
+			<h1>{{value}}</h1>
+			<button v-on:click="clickMe">{{clickMeName}}</button>
+		</div>
+	</body>
+	<script src="js/simulateVue.js"></script>
+	<script type="text/javascript">
+		new SimulateVue({
+			el: '#app',
+			data: {
+				title: 'hello world',
+				value: '',
+				clickMeName: "点我",
+				title_setTime: "你好，我的世界"
+			},
+			methods: {
+				// 点击事件修改title名字为value名字
+				clickMe: function() {
+					if (this.value == "") {
+						return;
+					} else {
+						this.title = this.value;
+					}
+
+				}
+			},
+
+			// 加载完毕后执行方法
+			mounted: function() {
+				// 1s后改变titile名字
+				window.setTimeout(() => {
+					this.title = this.title_setTime;
+				}, 2000);
+			}
+		});
+	</script>
+</html>
+
